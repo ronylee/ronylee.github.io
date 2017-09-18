@@ -53,7 +53,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="分库,分表," />
 
 
 
@@ -69,15 +69,37 @@
 
 
 
-<meta name="description" content="追求充实，分享快乐！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="RonyLee'Blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="1，主从复制，读写分离
+对主库修改数据，查询使用从库。一主多从，来降低数据库读取压力。
+2，分库分表
+根据实体业务来分库，分表。如，根据数据的活跃性，根据用户uid等。
+3，mysql 不同存储引擎区别
+InnoDB 用于数据完整性/写性能要求比较高的应用. MyISAM 适合查询应用。
+分表是分散数据库压力的好方法。
+分表，最直白的意思，就是将一个表结构分为多个表，然后，可以再同一个库里，也可以">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql大数据分库和分表 php解决方案">
+<meta property="og:url" content="http://yoursite.com/2017/09/18/mysql大数据分库和分表-php解决方案/index.html">
 <meta property="og:site_name" content="RonyLee'Blog">
-<meta property="og:description" content="追求充实，分享快乐！">
+<meta property="og:description" content="1，主从复制，读写分离
+对主库修改数据，查询使用从库。一主多从，来降低数据库读取压力。
+2，分库分表
+根据实体业务来分库，分表。如，根据数据的活跃性，根据用户uid等。
+3，mysql 不同存储引擎区别
+InnoDB 用于数据完整性/写性能要求比较高的应用. MyISAM 适合查询应用。
+分表是分散数据库压力的好方法。
+分表，最直白的意思，就是将一个表结构分为多个表，然后，可以再同一个库里，也可以">
+<meta property="og:updated_time" content="2017-09-18T09:22:40.607Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="RonyLee'Blog">
-<meta name="twitter:description" content="追求充实，分享快乐！">
+<meta name="twitter:title" content="mysql大数据分库和分表 php解决方案">
+<meta name="twitter:description" content="1，主从复制，读写分离
+对主库修改数据，查询使用从库。一主多从，来降低数据库读取压力。
+2，分库分表
+根据实体业务来分库，分表。如，根据数据的活跃性，根据用户uid等。
+3，mysql 不同存储引擎区别
+InnoDB 用于数据完整性/写性能要求比较高的应用. MyISAM 适合查询应用。
+分表是分散数据库压力的好方法。
+分表，最直白的意思，就是将一个表结构分为多个表，然后，可以再同一个库里，也可以">
 
 
 
@@ -107,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/09/18/mysql大数据分库和分表-php解决方案/"/>
 
 
 
 
 
-  <title>RonyLee'Blog</title>
+  <title>mysql大数据分库和分表 php解决方案 | RonyLee'Blog</title>
   
 
 
@@ -132,8 +154,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -236,9 +257,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -268,9 +289,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/18/mysql大数据分库和分表-php解决方案/" itemprop="url">mysql大数据分库和分表 php解决方案</a></h1>
+          <h1 class="post-title" itemprop="name headline">mysql大数据分库和分表 php解决方案</h1>
         
 
         <div class="post-meta">
@@ -342,24 +361,129 @@
       
 
       
-        
-          
-          1，主从复制，读写分离
-对主库修改数据，查询使用从库。一主多从，来降低数据库读取压力。
-2，分库分表
-根据实体业务来分库，分表。如，根据数据的活跃性，根据用户uid等。
-3，mysql 不同存储引擎区别
-InnoDB 用于数据完整性/写性能要求比较高的应用. MyISAM 适合查询应用。
-分表是分散
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/09/18/mysql大数据分库和分表-php解决方案/#далее" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+        <p>1，主从复制，读写分离</p>
+<p>对主库修改数据，查询使用从库。一主多从，来降低数据库读取压力。</p>
+<p>2，分库分表</p>
+<p>根据实体业务来分库，分表。如，根据数据的活跃性，根据用户uid等。</p>
+<p>3，mysql 不同存储引擎区别</p>
+<p>InnoDB 用于数据完整性/写性能要求比较高的应用. MyISAM 适合查询应用。</p>
+<p>分表是分散数据库压力的好方法。</p>
+<p>分表，最直白的意思，就是将一个表结构分为多个表，然后，可以再同一个库里，也可以放到不同的库。</p>
+<p>当然，首先要知道什么情况下，才需要分表。个人觉得单表记录条数达到百万到千万级别时就要使用分表了。</p>
+<p>1，分表的分类</p>
+<p>1&gt;纵向分表</p>
+<p>将本来可以在同一个表的内容，人为划分为多个表。（所谓的本来，是指按照关系型数据库的第三范式要求，是应该在同一个表的。）</p>
+<p>分表理由：根据数据的活跃度进行分离，（因为不同活跃的数据，处理方式是不同的）</p>
+<p>案例：</p>
+<p>对于一个博客系统，文章标题，作者，分类，创建时间等，是变化频率慢，查询次数多，而且最好有很好的实时性的数据，我们把它叫做冷数据。而博客的浏览量，回复数等，类似的统计信息，或者别的变化频率比较高的数据，我们把它叫做活跃数据。所以，在进行数据库结构设计的时候，就应该考虑分表，首先是纵向分表的处理。</p>
+<p>这样纵向分表后：</p>
+<p>首先存储引擎的使用不同，冷数据使用MyIsam 可以有更好的查询数据。活跃数据，可以使用Innodb ,可以有更好的更新速度。</p>
+<p>其次，对冷数据进行更多的从库配置，因为更多的操作时查询，这样来加快查询速度。对热数据，可以相对有更多的主库的横向分表处理。</p>
+<p>其实，对于一些特殊的活跃数据，也可以考虑使用memcache ,redis</p>
+<p>之类的缓存，等累计到一定量再去更新数据库。或者mongodb 一类的nosql 数据库，这里只是举例，就先不说这个。</p>
+<p>2&gt;横向分表</p>
+<p>字面意思，就可以看出来，是把大的表结构，横向切割为同样结构的不同表，如，用户信息表，user_1,user_2 等。表结构是完全一样，但是，根据某些特定的规则来划分的表，如根据用户ID来取模划分。</p>
+<p>分表理由：根据数据量的规模来划分，保证单表的容量不会太大，从而来保证单表的查询等处理能力。</p>
+<p>案例：同上面的例子，博客系统。当博客的量达到很大时候，就应该采取横向分割来降低每个单表的压力，来提升性能。例如博客的冷数据表，假如分为100个表，当同时有100万个用户在浏览时，如果是单表的话，会进行100万次请求，而现在分表后，就可能是每个表进行1万个数据的请求（因为，不可能绝对的平均，只是假设），这样压力就降低了很多很多。</p>
+<p>1，背景：一个地址薄的应用程序，设计的用户量为2亿，统计出每个用户的地址薄为30个左右，整个数据量为60亿，使用mysql数据库（亿级数据库设计）<br>计划分为：1000个表，100个库</p>
+<p>2，分库分表代码</p>
+<pre><code>private <span class="keyword">function</span> getDbNo(<span class="variable">$email</span>)
+{
+    <span class="variable">$m</span> = md5(<span class="variable">$email</span>);
+    <span class="variable">$n</span> = hexdec(substr(<span class="variable">$m</span>, <span class="number">0</span>, <span class="number">16</span>));
+    <span class="variable">$tableNo</span> = fmod(<span class="variable">$n</span>, <span class="number">1000</span>);
+    <span class="variable">$dbNo</span> = <span class="variable">$tableNo</span> % <span class="number">100</span>;
+    return array(<span class="variable">$dbNo</span>, <span class="variable">$tableNo</span>);
+}
+</code></pre><p>3，配合的连接访问代码</p>
+<pre><code>require_once ‘Db/Config.php’;
+
+class Db_Adapter
+{
+    const MASTER    = <span class="number">0</span>;
+    const SLAVE     = <span class="number">1</span>;
+
+    private static <span class="variable">$instances</span> = array();
+
+    private <span class="variable">$conf</span> = array();
+
+    private <span class="variable">$conns</span> = array();
+
+    private <span class="variable">$conn</span> = NULL;
+    private <span class="variable">$stmt</span> = NULL;
+    public function __construct(<span class="variable">$conf</span>)
+    {
+        <span class="variable">$this-</span>&gt;conf = <span class="variable">$conf</span>;
+    }
+
+    public function execute(<span class="variable">$sql</span>, <span class="variable">$params</span>)
+    {
+        <span class="variable">$cmd</span> = substr(strtolower(trim(<span class="variable">$sql</span>)), <span class="number">0</span>, <span class="number">6</span>);
+        if (<span class="variable">$cmd</span> == ‘select’) {
+            <span class="variable">$conn</span> = <span class="variable">$this-</span>&gt;getConn(self::SLAVE);
+        } else {
+            <span class="variable">$conn</span> = <span class="variable">$this-</span>&gt;getConn(self::MASTER);
+        }
+
+        <span class="variable">$conn-</span>&gt;prepare(<span class="variable">$sql</span>);
+        <span class="variable">$stmt</span> = <span class="variable">$conn-</span>&gt;execute(<span class="variable">$params</span>);
+
+        <span class="variable">$this-</span>&gt;conn = <span class="variable">$conn</span>;
+        <span class="variable">$this-</span>&gt;stmt = <span class="variable">$stmt</span>;
+    }
+
+    public function fetch()
+    {
+        return <span class="variable">$this-</span>&gt;stmt-&gt;fetch();
+    }
+
+    public function fetchAll()
+    {
+        return <span class="variable">$this-</span>&gt;stmt-&gt;fetchAll();
+    }
+
+    public function lastInsertId(<span class="variable">$name</span> = NULL)
+    {
+        return <span class="variable">$this-</span>&gt;conn-&gt;lastInsertId(<span class="variable">$name</span>);
+    }
+
+    public function rowCount()
+    {
+        return <span class="variable">$this-</span>&gt;stmt-&gt;rowCount();
+    }
+
+    private function getConn(<span class="variable">$type</span>)
+    {
+        if (<span class="variable">$type</span> == self::SLAVE &amp;&amp; isset(<span class="variable">$this-</span>&gt;conf[self::SLAVE])) {
+            <span class="variable">$id</span> = <span class="number">0</span>;
+        } else {
+            <span class="variable">$id</span> = <span class="number">1</span>;
+        }
+
+        if (!isset(<span class="variable">$this-</span>&gt;conns[<span class="variable">$id</span>])) {
+            <span class="variable">$conf</span> = <span class="variable">$this-</span>&gt;conf[<span class="variable">$id</span>];
+            <span class="variable">$this-</span>&gt;conns[<span class="variable">$id</span>] = new PDO(
+                <span class="variable">$conf</span>[<span class="string">'dsn'</span>], <span class="variable">$conf</span>[<span class="string">'user'</span>], <span class="variable">$conf</span>[<span class="string">'pass'</span>],
+                self::dbOptions);
+        }
+
+        return <span class="variable">$this-</span>&gt;conns[<span class="variable">$id</span>];
+    }
+
+    public static function getInstance(<span class="variable">$dbName</span>, <span class="variable">$dbNo</span> = <span class="number">0</span>)
+    {
+        <span class="variable">$key</span> = <span class="variable">$dbName</span> . ‘<span class="number">_</span>’ . <span class="variable">$dbNo</span>;
+        if (!isset(self::<span class="variable">$instances</span>[<span class="variable">$key</span>])) {
+            <span class="variable">$conf</span> = Db_Config::getConfig(<span class="variable">$dbName</span>, <span class="variable">$dbNo</span>); //连接配置参数
+            self::<span class="variable">$instances</span>[<span class="variable">$key</span>] = new self(<span class="variable">$conf</span>);
+        }
+
+        return self::<span class="variable">$instances</span>[<span class="variable">$key</span>];
+    }
+}
+</code></pre><p>4，潜在问题</p>
+<p>如果某个表中的那些用户的地址薄联系人超多，如每个人1000个，则可能出现该表超大，需要把该表区分为子表，暂时没有配置中心来处理该情况。<br>(若真的出现该情况，在连接参数这个地方继续作一次hash)。</p>
+
       
     </div>
     
@@ -374,312 +498,38 @@ InnoDB 用于数据完整性/写性能要求比较高的应用. MyISAM 适合查
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/20/Javascript-面向对象编程（一）：封装/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="RonyLee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RonyLee'Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/01/20/Javascript-面向对象编程（一）：封装/" itemprop="url">Javascript 面向对象编程（一）：封装</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-20T17:08:42+08:00">
-                2017-01-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">Javascript</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/分库/" rel="tag"># 分库</a>
           
-
+            <a href="/tags/分表/" rel="tag"># 分表</a>
           
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          
-          Javascript是一种基于对象（object-based）的语言，我们遇到的所有东西几乎都是对象。但是，它又不是一种真正的面向对象编程（OOP）语言，因为它的语法中没有class（类）。
-那么，如果我们要把”属性”（property）和”方法”（method），封装成一个对象，甚至要从原型对象生
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/01/20/Javascript-面向对象编程（一）：封装/#далее" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/20/Javascript-面向对象编程（一）：封装/" rel="next" title="Javascript 面向对象编程（一）：封装">
+                <i class="fa fa-chevron-left"></i> Javascript 面向对象编程（一）：封装
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
 
-    
+          <span class="post-nav-divider"></span>
 
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/19/何为JWT/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="RonyLee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RonyLee'Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/01/19/何为JWT/" itemprop="url">何为JWT</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+          <div class="post-nav-prev post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-19T16:53:14+08:00">
-                2017-01-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/PHP/" itemprop="url" rel="index">
-                    <span itemprop="name">PHP</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-          什么是JWT
-Json web token (JWT), 是为了在网络应用环境间传递声明而执行的一种基于JSON的开放标准（(RFC 7519).该token被设计为紧凑且安全的，特别适用于分布式站点的单点登录（SSO）场景。JWT的声明一般被用来在身份提供者和服务提供者间传递被认证的用户身份信息，
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/01/19/何为JWT/#далее" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -689,139 +539,11 @@ Json web token (JWT), 是为了在网络应用环境间传递声明而执行的�
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/18/Restful-Api-的理解/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="RonyLee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RonyLee'Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/01/18/Restful-Api-的理解/" itemprop="url">Restful Api 的理解</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-18T12:37:29+08:00">
-                2017-01-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-什么是REST?
-
-REST全称是Representational State Transfer，中文意思是表述（编者注：通常译为表征）性状态转移。 它首次出现在2000年Roy Fielding的博士论文中，Roy Fielding是HTTP规范的主要编写者之一。 他在论文中提到：”我这篇文章的
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/01/18/Restful-Api-的理解/#далее" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+    <div class="post-spread">
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
 
 
           </div>
@@ -829,6 +551,10 @@ REST全称是Representational State Transfer，中文意思是表述（编者注
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
