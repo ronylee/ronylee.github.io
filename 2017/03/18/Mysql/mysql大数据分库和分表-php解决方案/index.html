@@ -53,7 +53,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="分库,分表," />
 
 
 
@@ -69,52 +69,37 @@
 
 
 
-<meta name="description" content="正确清除日志姿势
-
-1echo &apos;&apos; &amp;gt; test.log
-
-　查找已删除文件被占用
-
-1lsof | grep deleted
-
-释放空间
-
-kill 掉进程，或重启应用服务
-123ps -aux | grep pidkill -9 pid1 pid2
-如果进程 kill 不掉，试试一次kill所有pid，或进程名">
+<meta name="description" content="1，主从复制，读写分离
+对主库修改数据，查询使用从库。一主多从，来降低数据库读取压力。
+2，分库分表
+根据实体业务来分库，分表。如，根据数据的活跃性，根据用户uid等。
+3，mysql 不同存储引擎区别
+InnoDB 用于数据完整性/写性能要求比较高的应用. MyISAM 适合查询应用。
+分表是分散数据库压力的好方法。
+分表，最直白的意思，就是将一个表结构分为多个表，然后，可以再同一个库里，也可以">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux 如何释放磁盘空间">
-<meta property="og:url" content="http://yoursite.com/2019/03/14/Linux 如何正确释放磁盘空间/index.html">
+<meta property="og:title" content="mysql大数据分库和分表 php解决方案">
+<meta property="og:url" content="http://yoursite.com/2017/03/18/Mysql/mysql大数据分库和分表-php解决方案/index.html">
 <meta property="og:site_name" content="RonyLee'Blog">
-<meta property="og:description" content="正确清除日志姿势
-
-1echo &apos;&apos; &amp;gt; test.log
-
-　查找已删除文件被占用
-
-1lsof | grep deleted
-
-释放空间
-
-kill 掉进程，或重启应用服务
-123ps -aux | grep pidkill -9 pid1 pid2
-如果进程 kill 不掉，试试一次kill所有pid，或进程名">
-<meta property="og:updated_time" content="2019-03-13T16:32:10.723Z">
+<meta property="og:description" content="1，主从复制，读写分离
+对主库修改数据，查询使用从库。一主多从，来降低数据库读取压力。
+2，分库分表
+根据实体业务来分库，分表。如，根据数据的活跃性，根据用户uid等。
+3，mysql 不同存储引擎区别
+InnoDB 用于数据完整性/写性能要求比较高的应用. MyISAM 适合查询应用。
+分表是分散数据库压力的好方法。
+分表，最直白的意思，就是将一个表结构分为多个表，然后，可以再同一个库里，也可以">
+<meta property="og:updated_time" content="2017-09-18T09:25:10.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux 如何释放磁盘空间">
-<meta name="twitter:description" content="正确清除日志姿势
-
-1echo &apos;&apos; &amp;gt; test.log
-
-　查找已删除文件被占用
-
-1lsof | grep deleted
-
-释放空间
-
-kill 掉进程，或重启应用服务
-123ps -aux | grep pidkill -9 pid1 pid2
-如果进程 kill 不掉，试试一次kill所有pid，或进程名">
+<meta name="twitter:title" content="mysql大数据分库和分表 php解决方案">
+<meta name="twitter:description" content="1，主从复制，读写分离
+对主库修改数据，查询使用从库。一主多从，来降低数据库读取压力。
+2，分库分表
+根据实体业务来分库，分表。如，根据数据的活跃性，根据用户uid等。
+3，mysql 不同存储引擎区别
+InnoDB 用于数据完整性/写性能要求比较高的应用. MyISAM 适合查询应用。
+分表是分散数据库压力的好方法。
+分表，最直白的意思，就是将一个表结构分为多个表，然后，可以再同一个库里，也可以">
 
 
 
@@ -144,13 +129,13 @@ kill 掉进程，或重启应用服务
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/03/14/Linux 如何正确释放磁盘空间/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/03/18/Mysql/mysql大数据分库和分表-php解决方案/"/>
 
 
 
 
 
-  <title>Linux 如何释放磁盘空间 | RonyLee'Blog</title>
+  <title>mysql大数据分库和分表 php解决方案 | RonyLee'Blog</title>
   
 
 
@@ -287,7 +272,7 @@ kill 掉进程，或重启应用服务
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/14/Linux 如何正确释放磁盘空间/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/18/Mysql/mysql大数据分库和分表-php解决方案/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="RonyLee">
@@ -304,7 +289,7 @@ kill 掉进程，或重启应用服务
 
         
         
-          <h1 class="post-title" itemprop="name headline">Linux 如何释放磁盘空间</h1>
+          <h1 class="post-title" itemprop="name headline">mysql大数据分库和分表 php解决方案</h1>
         
 
         <div class="post-meta">
@@ -316,8 +301,8 @@ kill 掉进程，或重启应用服务
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-14T00:22:25+08:00">
-                2019-03-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-18T17:20:06+08:00">
+                2017-03-18
               </time>
             
 
@@ -339,8 +324,8 @@ kill 掉进程，或重启应用服务
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
+                  <a href="/categories/PHP/" itemprop="url" rel="index">
+                    <span itemprop="name">PHP</span>
                   </a>
                 </span>
 
@@ -376,20 +361,128 @@ kill 掉进程，或重启应用服务
       
 
       
-        <blockquote>
-<p>正确清除日志姿势</p>
-</blockquote>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">echo</span> <span class="string">''</span> &gt; test.<span class="built_in">log</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>　查找已删除文件被占用</p>
-</blockquote>
-<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsof <span class="string">| grep deleted</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>释放空间</p>
-</blockquote>
-<p>kill 掉进程，或重启应用服务</p>
-<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ps -aux | <span class="keyword">grep</span> pid</span><br><span class="line"></span><br><span class="line"><span class="keyword">kill</span> -<span class="number">9</span> pid1 pid2</span><br></pre></td></tr></table></figure>
-<p>如果进程 kill 不掉，试试一次kill所有pid，或进程名</p>
+        <p>1，主从复制，读写分离</p>
+<p>对主库修改数据，查询使用从库。一主多从，来降低数据库读取压力。</p>
+<p>2，分库分表</p>
+<p>根据实体业务来分库，分表。如，根据数据的活跃性，根据用户uid等。</p>
+<p>3，mysql 不同存储引擎区别</p>
+<p>InnoDB 用于数据完整性/写性能要求比较高的应用. MyISAM 适合查询应用。</p>
+<p>分表是分散数据库压力的好方法。</p>
+<p>分表，最直白的意思，就是将一个表结构分为多个表，然后，可以再同一个库里，也可以放到不同的库。</p>
+<p>当然，首先要知道什么情况下，才需要分表。个人觉得单表记录条数达到百万到千万级别时就要使用分表了。</p>
+<p>1，分表的分类</p>
+<p>1&gt;纵向分表</p>
+<p>将本来可以在同一个表的内容，人为划分为多个表。（所谓的本来，是指按照关系型数据库的第三范式要求，是应该在同一个表的。）</p>
+<p>分表理由：根据数据的活跃度进行分离，（因为不同活跃的数据，处理方式是不同的）</p>
+<p>案例：</p>
+<p>对于一个博客系统，文章标题，作者，分类，创建时间等，是变化频率慢，查询次数多，而且最好有很好的实时性的数据，我们把它叫做冷数据。而博客的浏览量，回复数等，类似的统计信息，或者别的变化频率比较高的数据，我们把它叫做活跃数据。所以，在进行数据库结构设计的时候，就应该考虑分表，首先是纵向分表的处理。</p>
+<p>这样纵向分表后：</p>
+<p>首先存储引擎的使用不同，冷数据使用MyIsam 可以有更好的查询数据。活跃数据，可以使用Innodb ,可以有更好的更新速度。</p>
+<p>其次，对冷数据进行更多的从库配置，因为更多的操作时查询，这样来加快查询速度。对热数据，可以相对有更多的主库的横向分表处理。</p>
+<p>其实，对于一些特殊的活跃数据，也可以考虑使用memcache ,redis</p>
+<p>之类的缓存，等累计到一定量再去更新数据库。或者mongodb 一类的nosql 数据库，这里只是举例，就先不说这个。</p>
+<p>2&gt;横向分表</p>
+<p>字面意思，就可以看出来，是把大的表结构，横向切割为同样结构的不同表，如，用户信息表，user_1,user_2 等。表结构是完全一样，但是，根据某些特定的规则来划分的表，如根据用户ID来取模划分。</p>
+<p>分表理由：根据数据量的规模来划分，保证单表的容量不会太大，从而来保证单表的查询等处理能力。</p>
+<p>案例：同上面的例子，博客系统。当博客的量达到很大时候，就应该采取横向分割来降低每个单表的压力，来提升性能。例如博客的冷数据表，假如分为100个表，当同时有100万个用户在浏览时，如果是单表的话，会进行100万次请求，而现在分表后，就可能是每个表进行1万个数据的请求（因为，不可能绝对的平均，只是假设），这样压力就降低了很多很多。</p>
+<p>1，背景：一个地址薄的应用程序，设计的用户量为2亿，统计出每个用户的地址薄为30个左右，整个数据量为60亿，使用mysql数据库（亿级数据库设计）<br>计划分为：1000个表，100个库</p>
+<p>2，分库分表代码</p>
+<pre><code>private <span class="keyword">function</span> getDbNo(<span class="variable">$email</span>)
+{
+    <span class="variable">$m</span> = md5(<span class="variable">$email</span>);
+    <span class="variable">$n</span> = hexdec(substr(<span class="variable">$m</span>, <span class="number">0</span>, <span class="number">16</span>));
+    <span class="variable">$tableNo</span> = fmod(<span class="variable">$n</span>, <span class="number">1000</span>);
+    <span class="variable">$dbNo</span> = <span class="variable">$tableNo</span> % <span class="number">100</span>;
+    return array(<span class="variable">$dbNo</span>, <span class="variable">$tableNo</span>);
+}
+</code></pre><p>3，配合的连接访问代码</p>
+<pre><code>require_once ‘Db/Config.php’;
+
+class Db_Adapter
+{
+    const MASTER    = <span class="number">0</span>;
+    const SLAVE     = <span class="number">1</span>;
+
+    private static <span class="variable">$instances</span> = array();
+
+    private <span class="variable">$conf</span> = array();
+
+    private <span class="variable">$conns</span> = array();
+
+    private <span class="variable">$conn</span> = NULL;
+    private <span class="variable">$stmt</span> = NULL;
+    public function __construct(<span class="variable">$conf</span>)
+    {
+        <span class="variable">$this-</span>&gt;conf = <span class="variable">$conf</span>;
+    }
+
+    public function execute(<span class="variable">$sql</span>, <span class="variable">$params</span>)
+    {
+        <span class="variable">$cmd</span> = substr(strtolower(trim(<span class="variable">$sql</span>)), <span class="number">0</span>, <span class="number">6</span>);
+        if (<span class="variable">$cmd</span> == ‘select’) {
+            <span class="variable">$conn</span> = <span class="variable">$this-</span>&gt;getConn(self::SLAVE);
+        } else {
+            <span class="variable">$conn</span> = <span class="variable">$this-</span>&gt;getConn(self::MASTER);
+        }
+
+        <span class="variable">$conn-</span>&gt;prepare(<span class="variable">$sql</span>);
+        <span class="variable">$stmt</span> = <span class="variable">$conn-</span>&gt;execute(<span class="variable">$params</span>);
+
+        <span class="variable">$this-</span>&gt;conn = <span class="variable">$conn</span>;
+        <span class="variable">$this-</span>&gt;stmt = <span class="variable">$stmt</span>;
+    }
+
+    public function fetch()
+    {
+        return <span class="variable">$this-</span>&gt;stmt-&gt;fetch();
+    }
+
+    public function fetchAll()
+    {
+        return <span class="variable">$this-</span>&gt;stmt-&gt;fetchAll();
+    }
+
+    public function lastInsertId(<span class="variable">$name</span> = NULL)
+    {
+        return <span class="variable">$this-</span>&gt;conn-&gt;lastInsertId(<span class="variable">$name</span>);
+    }
+
+    public function rowCount()
+    {
+        return <span class="variable">$this-</span>&gt;stmt-&gt;rowCount();
+    }
+
+    private function getConn(<span class="variable">$type</span>)
+    {
+        if (<span class="variable">$type</span> == self::SLAVE &amp;&amp; isset(<span class="variable">$this-</span>&gt;conf[self::SLAVE])) {
+            <span class="variable">$id</span> = <span class="number">0</span>;
+        } else {
+            <span class="variable">$id</span> = <span class="number">1</span>;
+        }
+
+        if (!isset(<span class="variable">$this-</span>&gt;conns[<span class="variable">$id</span>])) {
+            <span class="variable">$conf</span> = <span class="variable">$this-</span>&gt;conf[<span class="variable">$id</span>];
+            <span class="variable">$this-</span>&gt;conns[<span class="variable">$id</span>] = new PDO(
+                <span class="variable">$conf</span>[<span class="string">'dsn'</span>], <span class="variable">$conf</span>[<span class="string">'user'</span>], <span class="variable">$conf</span>[<span class="string">'pass'</span>],
+                self::dbOptions);
+        }
+
+        return <span class="variable">$this-</span>&gt;conns[<span class="variable">$id</span>];
+    }
+
+    public static function getInstance(<span class="variable">$dbName</span>, <span class="variable">$dbNo</span> = <span class="number">0</span>)
+    {
+        <span class="variable">$key</span> = <span class="variable">$dbName</span> . ‘<span class="number">_</span>’ . <span class="variable">$dbNo</span>;
+        if (!isset(self::<span class="variable">$instances</span>[<span class="variable">$key</span>])) {
+            <span class="variable">$conf</span> = Db_Config::getConfig(<span class="variable">$dbName</span>, <span class="variable">$dbNo</span>); //连接配置参数
+            self::<span class="variable">$instances</span>[<span class="variable">$key</span>] = new self(<span class="variable">$conf</span>);
+        }
+
+        return self::<span class="variable">$instances</span>[<span class="variable">$key</span>];
+    }
+}
+</code></pre><p>4，潜在问题</p>
+<p>如果某个表中的那些用户的地址薄联系人超多，如每个人1000个，则可能出现该表超大，需要把该表区分为子表，暂时没有配置中心来处理该情况。<br>(若真的出现该情况，在连接参数这个地方继续作一次hash)。</p>
 
       
     </div>
@@ -405,6 +498,14 @@ kill 掉进程，或重启应用服务
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/分库/" rel="tag"># 分库</a>
+          
+            <a href="/tags/分表/" rel="tag"># 分表</a>
+          
+        </div>
+      
 
       
       
@@ -414,8 +515,8 @@ kill 掉进程，或重启应用服务
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/18/mysql大数据分库和分表-php解决方案/" rel="next" title="mysql大数据分库和分表 php解决方案">
-                <i class="fa fa-chevron-left"></i> mysql大数据分库和分表 php解决方案
+              <a href="/2017/01/20/Javascript/Javascript-面向对象编程（一）：封装/" rel="next" title="Javascript 面向对象编程（一）：封装">
+                <i class="fa fa-chevron-left"></i> Javascript 面向对象编程（一）：封装
               </a>
             
           </div>
@@ -424,8 +525,8 @@ kill 掉进程，或重启应用服务
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/03/14/ElasticSearch-深度分页问题/" rel="prev" title="ElasticSearch 深度分页问题">
-                ElasticSearch 深度分页问题 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/03/14/Linux/Linux 如何正确释放磁盘空间/" rel="prev" title="Linux 如何释放磁盘空间">
+                Linux 如何释放磁盘空间 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -497,7 +598,7 @@ kill 掉进程，或重启应用服务
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -508,7 +609,7 @@ kill 掉进程，或重启应用服务
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -519,7 +620,7 @@ kill 掉进程，或重启应用服务
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -613,7 +714,7 @@ kill 掉进程，或重启应用服务
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
