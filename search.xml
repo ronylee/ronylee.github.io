@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>t2</title>
+    <url>/2023/05/01/%E6%9E%B6%E6%9E%84/t2/</url>
+    <content><![CDATA[<p>```go</p>
+<p>inport main</p>
+<p>func test()<br>{<br>    fmt.printl(‘xxx’);<br>}</p>
+]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2023/05/01/%E6%9E%B6%E6%9E%84/%E6%9C%AA%E5%91%BD%E5%90%8D/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title>10亿的订单数据用mysql怎么存储</title>
     <url>/2021/06/17/%E9%9D%A2%E8%AF%95%E9%A2%98/10%E4%BA%BF%E7%9A%84%E8%AE%A2%E5%8D%95%E6%95%B0%E6%8D%AE%E7%94%A8mysql%E6%80%8E%E4%B9%88%E5%AD%98%E5%82%A8/</url>
     <content><![CDATA[<p>很显然一个库一张表是不可能的<br><a id="more"></a><br>需要对表做水平切分，一张1千万，需要100张才能存10个亿</p>
