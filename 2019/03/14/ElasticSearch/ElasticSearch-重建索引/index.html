@@ -72,34 +72,65 @@
 </blockquote>
 <p>导入数据时，要设置副本为0，数据导入完成后，记得副本设置为1</p>
 <a id="more"></a>
-<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">PUT my_index_v2/_settings</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    <span class="string">"settings"</span> : &#123;</span><br><span class="line">      <span class="string">"index"</span> : &#123;</span><br><span class="line">            <span class="string">"number_of_replicas"</span> : <span class="string">"1"</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
+<pre><code>PUT my_index_v2/_settings
+{
+
+    &quot;settings&quot; : {
+      &quot;index&quot; : {
+            &quot;number_of_replicas&quot; : &quot;1&quot;
+        }
+    }
+}
+</code></pre><blockquote>
 <p>设置刷新时间禁用</p>
 </blockquote>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">默认为<span class="number">1</span>S</span><br><span class="line"></span><br><span class="line">禁用刷新</span><br><span class="line">PUT <span class="regexp">/my_index_v2/</span>_settings</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"refresh_interval"</span>: <span class="string">"-1"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">恢复</span><br><span class="line">PUT <span class="regexp">/my_index_v2/</span>_settings</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"refresh_interval"</span>: <span class="string">"1s"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
+<pre><code>默认为1S
+
+禁用刷新
+PUT /my_index_v2/_settings
+{
+  &quot;refresh_interval&quot;: &quot;-1&quot;
+}
+
+
+恢复
+PUT /my_index_v2/_settings
+{
+  &quot;refresh_interval&quot;: &quot;1s&quot;
+}
+</code></pre><blockquote>
 <p>reindex 开始重建索引</p>
 </blockquote>
 <p>数据量大一般会超时，但是任务还在执行，可以查看任务</p>
-<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">POST _reindex</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"source"</span>: &#123;</span><br><span class="line">    <span class="string">"index"</span>: <span class="string">"my_index"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"dest"</span>: &#123;</span><br><span class="line">    <span class="string">"index"</span>: <span class="string">"my_index_v2"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
+<pre><code>POST _reindex
+{
+  &quot;source&quot;: {
+    &quot;index&quot;: &quot;my_index&quot;
+  },
+  &quot;dest&quot;: {
+    &quot;index&quot;: &quot;my_index_v2&quot;
+  }
+}
+</code></pre><blockquote>
 <p>查看任务</p>
 </blockquote>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">GET</span> _tasks?<span class="attribute">actions</span>=indices:data/write/reindex</span><br></pre></td></tr></table></figure>
-<blockquote>
+<pre><code>GET _tasks?actions=indices:data/write/reindex
+</code></pre><blockquote>
 <p>取消任务</p>
 </blockquote>
-<figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">POST <span class="variable">_tasks</span>/task_id:<span class="number">1</span>/<span class="variable">_cancel</span></span><br></pre></td></tr></table></figure>
-<blockquote>
+<pre><code>POST _tasks/task_id:1/_cancel
+</code></pre><blockquote>
 <p>创建索引别名</p>
 </blockquote>
 <p>最好一开始就设计好索引别名，如果怕索引被删除，字段类型自动生成，可为索引名称设置模板</p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">PUT</span> /my_index_v2/_<span class="meta">alias</span>/my_index</span><br></pre></td></tr></table></figure>
-<blockquote>
+<pre><code>PUT /my_index_v2/_alias/my_index
+</code></pre><blockquote>
 <p>查看别名</p>
 </blockquote>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">GET</span> /my_index_v2/_<span class="meta">alias</span><span class="comment">/*</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">GET /*/</span>_<span class="meta">alias</span>/my_index</span><br></pre></td></tr></table></figure>
-<blockquote>
+<pre><code>GET /my_index_v2/_alias/*
+
+GET /*/_alias/my_index
+</code></pre><blockquote>
 <p>程序批量导入</p>
 </blockquote>
 <p>使用 scroll（游标） 批量查询，再批量导入</p>
@@ -108,7 +139,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/14/ElasticSearch/ElasticSearch-重建索引/" data-id="clh43d3ft0006w6jgh2qqnjy9" class="article-share-link">
+      <a data-url="http://yoursite.com/2019/03/14/ElasticSearch/ElasticSearch-重建索引/" data-id="clh43i6l000070ejgywhoe6ij" class="article-share-link">
         分享
       </a>
       

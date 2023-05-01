@@ -82,17 +82,17 @@
 <p>用户使用用户名密码来请求服务器<br>服务器进行验证用户的信息<br>服务器通过验证发送给用户一个token<br>客户端存储token，并在每次请求时附送上这个token值<br>服务端验证token值，并返回数据<br>这个token必须要在每次请求时传递给服务端，它应该保存在请求头里， 另外，服务端要支持CORS(跨来源资源共享)策略，一般我们在服务端这么做就可以了Access-Control-Allow-Origin: *。</p>
 <p>那么我们现在回到JWT的主题上。</p>
 <h3 id="JWT长什么样？">JWT长什么样？</h3><p>JWT是由三段信息构成的，将这三段信息文本用.链接一起就构成了Jwt字符串。就像这样:</p>
-<pre><code>eyJhbGciOiJIUzI<span class="number">1</span><span class="label">NiIsInR5</span>cCI<span class="number">6</span>IkpX<span class="title">VCJ9</span>.eyJzdWIiOiIxMj<span class="title">M0</span><span class="label">NTY3</span>ODkwIiwibmFtZSI<span class="number">6</span>Ikpva<span class="keyword">G4</span>gR<span class="keyword">G9</span>lIiwiYWRtaW<span class="number">4</span>iO<span class="label">nRydWV9</span>.TJVA<span class="number">95</span><span class="keyword">Or</span><span class="title">M7</span>E<span class="number">2</span>cBab<span class="number">30</span>RMHrHDcEfxjoYZgeFO<span class="label">NFh7</span>HgQ
+<pre><code>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ
 </code></pre><h3 id="JWT的构成">JWT的构成</h3><p>第一部分我们称它为头部（header),第二部分我们称其为载荷（payload, 类似于飞机上承载的物品)，第三部分是签证（signature).</p>
 <p>header</p>
 <p>jwt的头部承载两部分信息：</p>
 <p>声明类型，这里是jwt<br>声明加密的算法 通常直接使用 HMAC SHA256<br>完整的头部就像下面这样的JSON：</p>
 <pre><code>{
-  <span class="string">'typ'</span>: <span class="string">'JWT'</span>,
-  <span class="string">'alg'</span>: <span class="string">'HS256'</span>
+  &#39;typ&#39;: &#39;JWT&#39;,
+  &#39;alg&#39;: &#39;HS256&#39;
 }
 </code></pre><p>然后将头部进行base64加密（该加密是可以对称解密的),构成了第一部分.</p>
-<pre><code>eyJ<span class="number">0</span>eXAiOiJKV<span class="number">1</span>QiLCJhbGciOiJIUzI<span class="number">1</span><span class="label">NiJ9</span>
+<pre><code>eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
 </code></pre><p>playload</p>
 <p>载荷就是存放有效信息的地方。这个名字像是特指飞机上承载的货品，这些有效信息包含三个部分</p>
 <p>标准中注册的声明<br>公共的声明<br>私有的声明<br>标准中注册的声明 (建议但不强制使用) ：</p>
@@ -100,26 +100,26 @@
 <p>私有的声明 ：<br>私有声明是提供者和消费者所共同定义的声明，一般不建议存放敏感信息，因为base64是对称解密的，意味着该部分信息可以归类为明文信息。</p>
 <p>定义一个payload:</p>
 <pre><code>{
-  "<span class="attribute">sub</span>": <span class="value"><span class="string">"1234567890"</span></span>,
-  "<span class="attribute">name</span>": <span class="value"><span class="string">"John Doe"</span></span>,
-  "<span class="attribute">admin</span>": <span class="value"><span class="literal">true</span>
-</span>}
+  &quot;sub&quot;: &quot;1234567890&quot;,
+  &quot;name&quot;: &quot;John Doe&quot;,
+  &quot;admin&quot;: true
+}
 </code></pre><p>然后将其进行base64加密，得到Jwt的第二部分。</p>
-<pre><code>eyJzdWIiOiIxMj<span class="title">M0</span><span class="label">NTY3</span>ODkwIiwibmFtZSI<span class="number">6</span>Ikpva<span class="keyword">G4</span>gR<span class="keyword">G9</span>lIiwiYWRtaW<span class="number">4</span>iO<span class="label">nRydWV9</span>
+<pre><code>eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9
 </code></pre><p>signature</p>
 <p>jwt的第三部分是一个签证信息，这个签证信息由三部分组成：</p>
 <p>header (base64后的)<br>payload (base64后的)<br>secret<br>这个部分需要base64加密后的header和base64加密后的payload使用.连接组成的字符串，然后通过header中声明的加密方式进行加盐secret组合加密，然后就构成了jwt的第三部分。</p>
-<pre><code><span class="comment">// javascript</span>
-<span class="built_in">var</span> encodedString = base64UrlEncode(<span class="keyword">header</span>) + <span class="string">'.'</span> + base64UrlEncode(payload);
+<pre><code>// javascript
+var encodedString = base64UrlEncode(header) + &#39;.&#39; + base64UrlEncode(payload);
 
-<span class="built_in">var</span> signature = HMACSHA256(encodedString, <span class="string">'secret'</span>); <span class="comment">// TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ</span>
+var signature = HMACSHA256(encodedString, &#39;secret&#39;); // TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ
 </code></pre><p>将这三部分用.连接成一个完整的字符串,构成了最终的jwt:</p>
-<pre><code>eyJhbGciOiJIUzI<span class="number">1</span><span class="label">NiIsInR5</span>cCI<span class="number">6</span>IkpX<span class="title">VCJ9</span>.eyJzdWIiOiIxMj<span class="title">M0</span><span class="label">NTY3</span>ODkwIiwibmFtZSI<span class="number">6</span>Ikpva<span class="keyword">G4</span>gR<span class="keyword">G9</span>lIiwiYWRtaW<span class="number">4</span>iO<span class="label">nRydWV9</span>.TJVA<span class="number">95</span><span class="keyword">Or</span><span class="title">M7</span>E<span class="number">2</span>cBab<span class="number">30</span>RMHrHDcEfxjoYZgeFO<span class="label">NFh7</span>HgQ
+<pre><code>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ
 </code></pre><p>注意：secret是保存在服务器端的，jwt的签发生成也是在服务器端的，secret就是用来进行jwt的签发和jwt的验证，所以，它就是你服务端的私钥，在任何场景都不应该流露出去。一旦客户端得知这个secret, 那就意味着客户端是可以自我签发jwt了。</p>
 <h3 id="如何应用">如何应用</h3><p>一般是在请求头里加入Authorization，并加上Bearer标注：</p>
-<pre><code>fetch(<span class="string">'api/user/1'</span>, {
+<pre><code>fetch(&#39;api/user/1&#39;, {
   headers: {
-    <span class="string">'Authorization'</span>: <span class="string">'Bearer '</span> + token
+    &#39;Authorization&#39;: &#39;Bearer &#39; + token
   }
 })
 </code></pre><p>服务端会验证token，如果验证通过就会返回相应的资源。整个流程就是这样的:</p>
@@ -131,7 +131,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/19/PHP/何为JWT/" data-id="clh43d3g2000cw6jg69tfc934" class="article-share-link">
+      <a data-url="http://yoursite.com/2017/01/19/PHP/何为JWT/" data-id="clh43i6l8000c0ejgag3t2s1h" class="article-share-link">
         分享
       </a>
       
