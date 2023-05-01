@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
@@ -18,12 +18,12 @@
   
     <link rel="shortcut icon" href="/favicon.ico">
     
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css" type="text/css">
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
   
-  <script src="/js/pace.min.js" type="text/javascript"></script>
-</head>
+  <script src="/js/pace.min.js"></script>
+</head></html>
 
 <body>
   <main class="content">
@@ -77,7 +77,7 @@
 <ol>
 <li>1 资源与URI</li>
 </ol>
-<p>REST全称是表述性状态转移，那究竟指的是什么的表述? 其实指的就是资源。任何事物，只要有被引用到的必要，它就是一个资源。资源可以是实体(例如手机号码)，也可以只是一个抽象概念(例如价值) 。下面是一些资源的例子：<br>某用户的手机号码<br>某用户的个人信息<br>最多用户订购的GPRS套餐<br>两个产品之间的依赖关系<br>某用户可以办理的优惠套餐<br>某手机号码的潜在价值<br>要让一个资源可以被识别，需要有个唯一标识，在Web中这个唯一标识就是URI(Uniform Resource Identifier)。<br>URI既可以看成是资源的地址，也可以看成是资源的名称。如果某些信息没有使用URI来表示，那它就不能算是一个资源， 只能算是资源的一些信息而已。URI的设计应该遵循可寻址性原则，具有自描述性，需要在形式上给人以直觉上的关联。这里以github网站为例，给出一些还算不错的URI：<br><a href="https://github.com/git" target="_blank" rel="external">https://github.com/git</a><br><a href="https://github.com/git/git" target="_blank" rel="external">https://github.com/git/git</a><br><a href="https://github.com/git/git/blob/master/block-sha1/sha1.h" target="_blank" rel="external">https://github.com/git/git/blob/master/block-sha1/sha1.h</a><br><a href="https://github.com/git/git/commit/e3af72cdafab5993d18fae056f87e1d675913d08" target="_blank" rel="external">https://github.com/git/git/commit/e3af72cdafab5993d18fae056f87e1d675913d08</a><br><a href="https://github.com/git/git/pulls" target="_blank" rel="external">https://github.com/git/git/pulls</a><br><a href="https://github.com/git/git/pulls?state=closed" target="_blank" rel="external">https://github.com/git/git/pulls?state=closed</a><br><a href="https://github.com/git/git/compare/master…next" target="_blank" rel="external">https://github.com/git/git/compare/master…next</a><br>下面让我们来看看URI设计上的一些技巧:<br>使用<em>或-来让URI可读性更好<br>曾经Web上的URI都是冰冷的数字或者无意义的字符串，但现在越来越多的网站使用</em>或-来分隔一些单词，让URI看上去更为人性化。 例如国内比较出名的开源中国社区，它上面的新闻地址就采用这种风格， 如<a href="http://www.oschina.net/news/38119/oschina-translate-reward-plan。" target="_blank" rel="external">http://www.oschina.net/news/38119/oschina-translate-reward-plan。</a><br>使用/来表示资源的层级关系<br>例如上述/git/git/commit/e3af72cdafab5993d18fae056f87e1d675913d08就表示了一个多级的资源， 指的是git用户的git项目的某次提交记录，又例如/orders/2012/10可以用来表示2012年10月的订单记录。<br>使用?用来过滤资源<br>很多人只是把?简单的当做是参数的传递，很容易造成URI过于复杂、难以理解。可以把?用于对资源的过滤， 例如/git/git/pulls用来表示git项目的所有推入请求，而/pulls?state=closed用来表示git项目中已经关闭的推入请求， 这种URL通常对应的是一些特定条件的查询结果或算法运算结果。<br>,或;可以用来表示同级资源的关系<br>有时候我们需要表示同级资源的关系时，可以使用,或;来进行分割。例如哪天github可以比较某个文件在随意两次提交记录之间的差异，或许可以使用/git/git /block-sha1/sha1.h/compare/e3af72cdafab5993d18fae056f87e1d675913d08;bd63e61bdf38e872d5215c07b264dcc16e4febca作为URI。 不过，现在github是使用…来做这个事情的，例如/git/git/compare/master…next。</p>
+<p>REST全称是表述性状态转移，那究竟指的是什么的表述? 其实指的就是资源。任何事物，只要有被引用到的必要，它就是一个资源。资源可以是实体(例如手机号码)，也可以只是一个抽象概念(例如价值) 。下面是一些资源的例子：<br>某用户的手机号码<br>某用户的个人信息<br>最多用户订购的GPRS套餐<br>两个产品之间的依赖关系<br>某用户可以办理的优惠套餐<br>某手机号码的潜在价值<br>要让一个资源可以被识别，需要有个唯一标识，在Web中这个唯一标识就是URI(Uniform Resource Identifier)。<br>URI既可以看成是资源的地址，也可以看成是资源的名称。如果某些信息没有使用URI来表示，那它就不能算是一个资源， 只能算是资源的一些信息而已。URI的设计应该遵循可寻址性原则，具有自描述性，需要在形式上给人以直觉上的关联。这里以github网站为例，给出一些还算不错的URI：<br><a href="https://github.com/git" target="_blank" rel="noopener">https://github.com/git</a><br><a href="https://github.com/git/git" target="_blank" rel="noopener">https://github.com/git/git</a><br><a href="https://github.com/git/git/blob/master/block-sha1/sha1.h" target="_blank" rel="noopener">https://github.com/git/git/blob/master/block-sha1/sha1.h</a><br><a href="https://github.com/git/git/commit/e3af72cdafab5993d18fae056f87e1d675913d08" target="_blank" rel="noopener">https://github.com/git/git/commit/e3af72cdafab5993d18fae056f87e1d675913d08</a><br><a href="https://github.com/git/git/pulls" target="_blank" rel="noopener">https://github.com/git/git/pulls</a><br><a href="https://github.com/git/git/pulls?state=closed" target="_blank" rel="noopener">https://github.com/git/git/pulls?state=closed</a><br><a href="https://github.com/git/git/compare/master…next" target="_blank" rel="noopener">https://github.com/git/git/compare/master…next</a><br>下面让我们来看看URI设计上的一些技巧:<br>使用<em>或-来让URI可读性更好<br>曾经Web上的URI都是冰冷的数字或者无意义的字符串，但现在越来越多的网站使用</em>或-来分隔一些单词，让URI看上去更为人性化。 例如国内比较出名的开源中国社区，它上面的新闻地址就采用这种风格， 如<a href="http://www.oschina.net/news/38119/oschina-translate-reward-plan。" target="_blank" rel="noopener">http://www.oschina.net/news/38119/oschina-translate-reward-plan。</a><br>使用/来表示资源的层级关系<br>例如上述/git/git/commit/e3af72cdafab5993d18fae056f87e1d675913d08就表示了一个多级的资源， 指的是git用户的git项目的某次提交记录，又例如/orders/2012/10可以用来表示2012年10月的订单记录。<br>使用?用来过滤资源<br>很多人只是把?简单的当做是参数的传递，很容易造成URI过于复杂、难以理解。可以把?用于对资源的过滤， 例如/git/git/pulls用来表示git项目的所有推入请求，而/pulls?state=closed用来表示git项目中已经关闭的推入请求， 这种URL通常对应的是一些特定条件的查询结果或算法运算结果。<br>,或;可以用来表示同级资源的关系<br>有时候我们需要表示同级资源的关系时，可以使用,或;来进行分割。例如哪天github可以比较某个文件在随意两次提交记录之间的差异，或许可以使用/git/git /block-sha1/sha1.h/compare/e3af72cdafab5993d18fae056f87e1d675913d08;bd63e61bdf38e872d5215c07b264dcc16e4febca作为URI。 不过，现在github是使用…来做这个事情的，例如/git/git/compare/master…next。</p>
 <ol>
 <li>2 统一资源接口</li>
 </ol>
@@ -87,7 +87,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/18/PHP/Restful-Api-的理解/" data-id="clh42pjhk000o86jgexka03ns" class="article-share-link">
+      <a data-url="http://yoursite.com/2017/01/18/PHP/Restful-Api-的理解/" data-id="clh42t72m0009cxjg1ngcmmnd" class="article-share-link">
         分享
       </a>
       
@@ -206,16 +206,16 @@
 </div>
 </div>
   </aside>
-  <script src="/js/jquery-2.0.3.min.js" type="text/javascript"></script>
-<script src="/js/jquery.justifiedGallery.min.js" type="text/javascript"></script>
-<script src="/js/lazyload.min.js" type="text/javascript"></script>
-<script src="/js/busuanzi-2.3.pure.min.js" type="text/javascript"></script>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
 
-<script src="/fancybox/jquery.fancybox.min.js" type="text/javascript"></script>
+<script src="/fancybox/jquery.fancybox.min.js"></script>
 
 
 
-<script src="/js/tocbot.min.js" type="text/javascript"></script>
+<script src="/js/tocbot.min.js"></script>
 
 <script>
   // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
@@ -232,7 +232,7 @@
 </script>
 
 
-<script src="/js/ocean.js" type="text/javascript"></script>
+<script src="/js/ocean.js"></script>
 </body>
 
 </html>

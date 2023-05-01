@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
@@ -18,12 +18,12 @@
   
     <link rel="shortcut icon" href="/favicon.ico">
     
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css" type="text/css">
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
   
-  <script src="/js/pace.min.js" type="text/javascript"></script>
-</head>
+  <script src="/js/pace.min.js"></script>
+</head></html>
 
 <body>
   <main class="content">
@@ -74,7 +74,7 @@
 <p>探索一，尝试直接用 ES 进行多字段分组</p>
 </blockquote>
 <figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">利用 aggs top_hits , 直接进行分组查询</span><br><span class="line"></span><br><span class="line">GET index/type/_search</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"query"</span>: &#123;</span><br><span class="line">    <span class="string">"match"</span>: &#123;&#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"aggs"</span>: &#123;</span><br><span class="line">    <span class="string">"group"</span>: &#123;</span><br><span class="line">      <span class="string">"terms"</span>: &#123;</span><br><span class="line">        <span class="string">"field"</span>: <span class="string">"group_field"</span>,</span><br><span class="line">        <span class="string">"size"</span>: <span class="number">10</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="string">"aggs"</span>: &#123;</span><br><span class="line">        <span class="string">"data"</span>: &#123;</span><br><span class="line">          <span class="string">"top_hits"</span>: &#123;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">问题：很明显，只能按一个字段进行分组，满足不了</span><br></pre></td></tr></table></figure>
-<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">利用 script 实现多字段分组查询</span><br><span class="line"></span><br><span class="line">GET /product/goods/_search</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"size"</span>: <span class="number">0</span>, </span><br><span class="line">  <span class="string">"aggs"</span>: &#123;</span><br><span class="line">    <span class="string">"group"</span>: &#123;</span><br><span class="line">      <span class="string">"terms"</span>: &#123;</span><br><span class="line">        <span class="string">"script"</span>: <span class="string">"doc['sid'].value + doc['shop_dangkou_no'].value + doc['item_price_pifa']"</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="string">"aggs"</span>: &#123;</span><br><span class="line">        <span class="string">"data"</span>: &#123;</span><br><span class="line">          <span class="string">"top_hits"</span>: &#123;</span><br><span class="line"></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125; </span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"query"</span>: &#123;</span><br><span class="line">    <span class="string">"bool"</span>: &#123;</span><br><span class="line">      <span class="string">"must"</span>: [</span><br><span class="line"></span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">问题：分组无法进行分页，大数据量分组查询占用内存较高</span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">利用<span class="built_in"> script </span>实现多字段分组查询</span><br><span class="line"></span><br><span class="line"><span class="builtin-name">GET</span> /product/goods/_search</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"size"</span>: 0, </span><br><span class="line">  <span class="string">"aggs"</span>: &#123;</span><br><span class="line">    <span class="string">"group"</span>: &#123;</span><br><span class="line">      <span class="string">"terms"</span>: &#123;</span><br><span class="line">        <span class="string">"script"</span>: <span class="string">"doc['sid'].value + doc['shop_dangkou_no'].value + doc['item_price_pifa']"</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="string">"aggs"</span>: &#123;</span><br><span class="line">        <span class="string">"data"</span>: &#123;</span><br><span class="line">          <span class="string">"top_hits"</span>: &#123;</span><br><span class="line"></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125; </span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"query"</span>: &#123;</span><br><span class="line">    <span class="string">"bool"</span>: &#123;</span><br><span class="line">      <span class="string">"must"</span>: [</span><br><span class="line"></span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">问题：分组无法进行分页，大数据量分组查询占用内存较高</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>探索二， 尝试使用字段折叠功能</p>
 </blockquote>
@@ -84,7 +84,7 @@
 <p>方案落实</p>
 </blockquote>
 <p>到此，利用字段折叠功能，可实现多字段合并，只需要构建一个字段，数据结构如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">same_goods: <span class="number">12345678</span>:<span class="number">23456543</span>:<span class="number">34456765</span></span><br><span class="line"></span><br><span class="line">把相似的商品ID用冒号拼接，就可以用字段折叠筛选，后面如果有其它业务，需要知道宝贝的相似款，也方便查询</span><br></pre></td></tr></table></figure>
+<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">same_goods: <span class="number">12345678</span>:<span class="number">23456543</span>:<span class="number">34456765</span></span><br><span class="line"></span><br><span class="line">把相似的商品ID用冒号拼接，就可以用字段折叠筛选，后面如果有其它业务，需要知道宝贝的相似款，也方便查询</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>前台功能解决了，那如何构建这个字段呢</p>
 </blockquote>
@@ -97,7 +97,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/19/ElasticSearch/elasticsearch 实现合并相似款商品/" data-id="clh42pjhv001886jgbta57pbc" class="article-share-link">
+      <a data-url="http://yoursite.com/2019/03/19/ElasticSearch/elasticsearch 实现合并相似款商品/" data-id="clh42t72s000fcxjgoo62c4fs" class="article-share-link">
         分享
       </a>
       
@@ -214,16 +214,16 @@
 </div>
 </div>
   </aside>
-  <script src="/js/jquery-2.0.3.min.js" type="text/javascript"></script>
-<script src="/js/jquery.justifiedGallery.min.js" type="text/javascript"></script>
-<script src="/js/lazyload.min.js" type="text/javascript"></script>
-<script src="/js/busuanzi-2.3.pure.min.js" type="text/javascript"></script>
+  <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
 
-<script src="/fancybox/jquery.fancybox.min.js" type="text/javascript"></script>
+<script src="/fancybox/jquery.fancybox.min.js"></script>
 
 
 
-<script src="/js/tocbot.min.js" type="text/javascript"></script>
+<script src="/js/tocbot.min.js"></script>
 
 <script>
   // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
@@ -240,7 +240,7 @@
 </script>
 
 
-<script src="/js/ocean.js" type="text/javascript"></script>
+<script src="/js/ocean.js"></script>
 </body>
 
 </html>
