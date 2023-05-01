@@ -69,25 +69,23 @@
       <blockquote>
 <p>正确清除日志姿势</p>
 </blockquote>
-<pre><code>echo &#39;&#39; &gt; test.log
-</code></pre><blockquote>
+<figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined"><span class="hljs-built_in">echo</span> <span class="hljs-string">''</span> &gt; test.<span class="hljs-built_in">log</span><br></code></pre></td></tr></table></figure>
+<blockquote>
 <p>　查找已删除文件被占用</p>
 </blockquote>
 <a id="more"></a>
-<pre><code>lsof | grep deleted
-</code></pre><blockquote>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined">lsof <span class="hljs-string">| grep deleted</span><br></code></pre></td></tr></table></figure>
+<blockquote>
 <p>释放空间</p>
 </blockquote>
 <p>kill 掉进程，或重启应用服务</p>
-<pre><code>ps -aux | grep pid
-
-kill -9 pid1 pid2
-</code></pre><p>如果进程 kill 不掉，试试一次kill所有pid，或进程名</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs undefined">ps -aux | <span class="hljs-keyword">grep</span> pid<br><br><span class="hljs-keyword">kill</span> -<span class="hljs-number">9</span> pid1 pid2<br></code></pre></td></tr></table></figure>
+<p>如果进程 kill 不掉，试试一次kill所有pid，或进程名</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/14/Linux/Linux 如何正确释放磁盘空间/" data-id="clh43s8v8000acejgxymi63dd" class="article-share-link">
+      <a data-url="http://yoursite.com/2019/03/14/Linux/Linux 如何正确释放磁盘空间/" data-id="clh43uv7r0007evjg3oii8zxx" class="article-share-link">
         分享
       </a>
       

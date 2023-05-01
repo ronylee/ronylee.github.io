@@ -72,65 +72,34 @@
 </blockquote>
 <p>导入数据时，要设置副本为0，数据导入完成后，记得副本设置为1</p>
 <a id="more"></a>
-<pre><code>PUT my_index_v2/_settings
-{
-
-    &quot;settings&quot; : {
-      &quot;index&quot; : {
-            &quot;number_of_replicas&quot; : &quot;1&quot;
-        }
-    }
-}
-</code></pre><blockquote>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs undefined">PUT my_index_v2/_settings<br>&#123;<br><br>    <span class="hljs-string">"settings"</span> : &#123;<br>      <span class="hljs-string">"index"</span> : &#123;<br>            <span class="hljs-string">"number_of_replicas"</span> : <span class="hljs-string">"1"</span><br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<blockquote>
 <p>设置刷新时间禁用</p>
 </blockquote>
-<pre><code>默认为1S
-
-禁用刷新
-PUT /my_index_v2/_settings
-{
-  &quot;refresh_interval&quot;: &quot;-1&quot;
-}
-
-
-恢复
-PUT /my_index_v2/_settings
-{
-  &quot;refresh_interval&quot;: &quot;1s&quot;
-}
-</code></pre><blockquote>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs undefined">默认为<span class="hljs-number">1</span>S<br><br>禁用刷新<br>PUT <span class="hljs-regexp">/my_index_v2/</span>_settings<br>&#123;<br>  <span class="hljs-string">"refresh_interval"</span>: <span class="hljs-string">"-1"</span><br>&#125;<br><br><br>恢复<br>PUT <span class="hljs-regexp">/my_index_v2/</span>_settings<br>&#123;<br>  <span class="hljs-string">"refresh_interval"</span>: <span class="hljs-string">"1s"</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<blockquote>
 <p>reindex 开始重建索引</p>
 </blockquote>
 <p>数据量大一般会超时，但是任务还在执行，可以查看任务</p>
-<pre><code>POST _reindex
-{
-  &quot;source&quot;: {
-    &quot;index&quot;: &quot;my_index&quot;
-  },
-  &quot;dest&quot;: {
-    &quot;index&quot;: &quot;my_index_v2&quot;
-  }
-}
-</code></pre><blockquote>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs undefined">POST _reindex<br>&#123;<br>  <span class="hljs-string">"source"</span>: &#123;<br>    <span class="hljs-string">"index"</span>: <span class="hljs-string">"my_index"</span><br>  &#125;,<br>  <span class="hljs-string">"dest"</span>: &#123;<br>    <span class="hljs-string">"index"</span>: <span class="hljs-string">"my_index_v2"</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<blockquote>
 <p>查看任务</p>
 </blockquote>
-<pre><code>GET _tasks?actions=indices:data/write/reindex
-</code></pre><blockquote>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined"><span class="hljs-builtin-name">GET</span> _tasks?<span class="hljs-attribute">actions</span>=indices:data/write/reindex<br></code></pre></td></tr></table></figure>
+<blockquote>
 <p>取消任务</p>
 </blockquote>
-<pre><code>POST _tasks/task_id:1/_cancel
-</code></pre><blockquote>
+<figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined">POST <span class="hljs-variable">_tasks</span>/task_id:<span class="hljs-number">1</span>/<span class="hljs-variable">_cancel</span><br></code></pre></td></tr></table></figure>
+<blockquote>
 <p>创建索引别名</p>
 </blockquote>
 <p>最好一开始就设计好索引别名，如果怕索引被删除，字段类型自动生成，可为索引名称设置模板</p>
-<pre><code>PUT /my_index_v2/_alias/my_index
-</code></pre><blockquote>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined"><span class="hljs-symbol">PUT</span> /my_index_v2/_<span class="hljs-meta">alias</span>/my_index<br></code></pre></td></tr></table></figure>
+<blockquote>
 <p>查看别名</p>
 </blockquote>
-<pre><code>GET /my_index_v2/_alias/*
-
-GET /*/_alias/my_index
-</code></pre><blockquote>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs undefined"><span class="hljs-symbol">GET</span> /my_index_v2/_<span class="hljs-meta">alias</span><span class="hljs-comment">/*<br><br>GET /*/</span>_<span class="hljs-meta">alias</span>/my_index<br></code></pre></td></tr></table></figure>
+<blockquote>
 <p>程序批量导入</p>
 </blockquote>
 <p>使用 scroll（游标） 批量查询，再批量导入</p>
@@ -139,7 +108,7 @@ GET /*/_alias/my_index
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/14/ElasticSearch/ElasticSearch-重建索引/" data-id="clh43s8v10008cejggjmbkp11" class="article-share-link">
+      <a data-url="http://yoursite.com/2019/03/14/ElasticSearch/ElasticSearch-重建索引/" data-id="clh43uv7u0009evjgte4rc5ho" class="article-share-link">
         分享
       </a>
       

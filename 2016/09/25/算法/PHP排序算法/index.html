@@ -69,63 +69,63 @@
       <p>排序算法有以下几种：</p>
 <p>冒泡排序、直接插入排序、希尔排序、选择排序、堆排序，归并排序</p>
 <p>以下数组为例子<br>$arr = array(23, 15, 43, 25, 54, 2, 6, 82, 11, 5, 21, 32, 65);<br><a id="more"></a><br>冒泡排序</p>
-<pre><code>function maopao($arr)
+<pre><code><span class="keyword">function</span> maopao(<span class="variable">$arr</span>)
 {
 
-    $length = count($arr);
-    for ($i = 0; $i &lt; $length; $i++) {
-        for ($j = $i + 1; $j &lt; $length; $j++) {
-            if ($arr[$i] &gt; $arr[$j]) {
-                $temp = $arr[$j];
-                $arr[$j] = $arr[$i];
-                $arr[$i] = $temp;
+    <span class="variable">$length</span> = count(<span class="variable">$arr</span>);
+    for (<span class="variable">$i</span> = <span class="number">0</span>; <span class="variable">$i</span> &lt; <span class="variable">$length</span>; <span class="variable">$i</span>++) {
+        for (<span class="variable">$j</span> = <span class="variable">$i</span> + <span class="number">1</span>; <span class="variable">$j</span> &lt; <span class="variable">$length</span>; <span class="variable">$j</span>++) {
+            if (<span class="variable">$arr</span>[<span class="variable">$i</span>] &gt; <span class="variable">$arr</span>[<span class="variable">$j</span>]) {
+                <span class="variable">$temp</span> = <span class="variable">$arr</span>[<span class="variable">$j</span>];
+                <span class="variable">$arr</span>[<span class="variable">$j</span>] = <span class="variable">$arr</span>[<span class="variable">$i</span>];
+                <span class="variable">$arr</span>[<span class="variable">$i</span>] = <span class="variable">$temp</span>;
             }
 
         }
     }
 
-    return $arr;
+    return <span class="variable">$arr</span>;
 }
 
-var_dump(maopao($arr));
+var_dump(maopao(<span class="variable">$arr</span>));
 </code></pre><p>快速排序</p>
-<pre><code>function kspx($demo_array)
+<pre><code><span class="keyword">function</span> kspx(<span class="variable">$demo</span>_<span class="keyword">array</span>)
 {
 
-    $length = count($demo_array);
+    <span class="variable">$length</span> = count(<span class="variable">$demo</span>_array);
 
-    if ($length &lt;= 1) {
-        return $demo_array;
+    if (<span class="variable">$length</span> &lt;= <span class="number">1</span>) {
+        return <span class="variable">$demo</span>_array;
     }
 
-    $base = $demo_array[0];
+    <span class="variable">$base</span> = <span class="variable">$demo</span>_array[<span class="number">0</span>];
 
-    $left = [];
+    <span class="variable">$left</span> = [];
 
-    $right = [];
+    <span class="variable">$right</span> = [];
 
-    for ($i = 1; $i &lt; $length; $i++) {
+    for (<span class="variable">$i</span> = <span class="number">1</span>; <span class="variable">$i</span> &lt; <span class="variable">$length</span>; <span class="variable">$i</span>++) {
 
-        if ($base &gt; $demo_array[$i]) {
-            $left[] = $demo_array[$i];
+        if (<span class="variable">$base</span> &gt; <span class="variable">$demo</span>_array[<span class="variable">$i</span>]) {
+            <span class="variable">$left</span>[] = <span class="variable">$demo</span>_array[<span class="variable">$i</span>];
         } else {
-            $right[] = $demo_array[$i];
+            <span class="variable">$right</span>[] = <span class="variable">$demo</span>_array[<span class="variable">$i</span>];
         }
     }
 
-    $left = kspx($left);
-    $right = kspx($right);
+    <span class="variable">$left</span> = kspx(<span class="variable">$left</span>);
+    <span class="variable">$right</span> = kspx(<span class="variable">$right</span>);
 
-    return array_merge($left, [$base], $right);
+    return array_merge(<span class="variable">$left</span>, [<span class="variable">$base</span>], <span class="variable">$right</span>);
 
 }
 
-var_dump(kspx($arr));
+var_dump(kspx(<span class="variable">$arr</span>));
 </code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/09/25/算法/PHP排序算法/" data-id="clh43s8vd000gcejg731j5orl" class="article-share-link">
+      <a data-url="http://yoursite.com/2016/09/25/算法/PHP排序算法/" data-id="clh43uv7z000fevjgtnxfbr5v" class="article-share-link">
         分享
       </a>
       
