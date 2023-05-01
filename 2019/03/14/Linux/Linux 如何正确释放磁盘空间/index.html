@@ -69,23 +69,25 @@
       <blockquote>
 <p>正确清除日志姿势</p>
 </blockquote>
-<figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">''</span> &gt; test.<span class="built_in">log</span></span><br></pre></td></tr></table></figure>
-<blockquote>
+<pre><code>echo &#39;&#39; &gt; test.log
+</code></pre><blockquote>
 <p>　查找已删除文件被占用</p>
 </blockquote>
 <a id="more"></a>
-<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsof <span class="string">| grep deleted</span></span><br></pre></td></tr></table></figure>
-<blockquote>
+<pre><code>lsof | grep deleted
+</code></pre><blockquote>
 <p>释放空间</p>
 </blockquote>
 <p>kill 掉进程，或重启应用服务</p>
-<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ps -aux | <span class="keyword">grep</span> pid</span><br><span class="line"></span><br><span class="line"><span class="keyword">kill</span> -<span class="number">9</span> pid1 pid2</span><br></pre></td></tr></table></figure>
-<p>如果进程 kill 不掉，试试一次kill所有pid，或进程名</p>
+<pre><code>ps -aux | grep pid
+
+kill -9 pid1 pid2
+</code></pre><p>如果进程 kill 不掉，试试一次kill所有pid，或进程名</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/14/Linux/Linux 如何正确释放磁盘空间/" data-id="clh42w6vs0009jhjg1t5pkevq" class="article-share-link">
+      <a data-url="http://yoursite.com/2019/03/14/Linux/Linux 如何正确释放磁盘空间/" data-id="clh43bfyl000au7jg40vmbzuu" class="article-share-link">
         分享
       </a>
       

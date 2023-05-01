@@ -67,13 +67,22 @@
       
       
       <p>ES 默认分页，超出10000条会报</p>
-<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Result <span class="built_in">window</span> <span class="keyword">is</span> too large</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
+<pre><code>Result window is too large
+</code></pre><a id="more"></a>
 <blockquote>
 <p>解决问题</p>
 </blockquote>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">curl -XPUT http:<span class="regexp">//</span><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9200</span><span class="regexp">/my_index/</span>_settings -d <span class="string">'&#123; "index" : &#123; "max_result_window" : 500000&#125;&#125;'</span></span><br><span class="line"></span><br><span class="line">或用kibana</span><br><span class="line"></span><br><span class="line">PUT <span class="regexp">/goods-weight-v2/</span>_settings</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"index"</span>: &#123;</span><br><span class="line">    <span class="string">"max_result_window"</span>: <span class="number">10000</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>修改 max_result_window 的值</p>
+<pre><code>curl -XPUT http://127.0.0.1:9200/my_index/_settings -d &#39;{ &quot;index&quot; : { &quot;max_result_window&quot; : 500000}}&#39;
+
+或用kibana
+
+PUT /goods-weight-v2/_settings
+{
+  &quot;index&quot;: {
+    &quot;max_result_window&quot;: 10000
+  }
+}
+</code></pre><p>修改 max_result_window 的值</p>
 <blockquote>
 <p>原因</p>
 </blockquote>
@@ -86,7 +95,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/14/ElasticSearch/ElasticSearch-深度分页问题/" data-id="clh42w6vi0006jhjggezc60i5" class="article-share-link">
+      <a data-url="http://yoursite.com/2019/03/14/ElasticSearch/ElasticSearch-深度分页问题/" data-id="clh43bfyj0008u7jgyz5j9ko8" class="article-share-link">
         分享
       </a>
       
