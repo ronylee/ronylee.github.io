@@ -73,102 +73,19 @@
 <blockquote>
 <p>探索一，尝试直接用 ES 进行多字段分组</p>
 </blockquote>
-<pre><code>
-利用 aggs top_hits , 直接进行分组查询
-
-GET index/type/_search
-{
-  &quot;query&quot;: {
-    &quot;match&quot;: {}
-  },
-  &quot;aggs&quot;: {
-    &quot;group&quot;: {
-      &quot;terms&quot;: {
-        &quot;field&quot;: &quot;group_field&quot;,
-        &quot;size&quot;: 10
-      },
-      &quot;aggs&quot;: {
-        &quot;data&quot;: {
-          &quot;top_hits&quot;: {}
-        }
-      }
-    }
-  }
-}
-
-问题：很明显，只能按一个字段进行分组，满足不了
-</code></pre><pre><code>
-利用 script 实现多字段分组查询
-
-GET /product/goods/_search
-{
-  &quot;size&quot;: 0, 
-  &quot;aggs&quot;: {
-    &quot;group&quot;: {
-      &quot;terms&quot;: {
-        &quot;script&quot;: &quot;doc[&#39;sid&#39;].value + doc[&#39;shop_dangkou_no&#39;].value + doc[&#39;item_price_pifa&#39;]&quot;
-      },
-      &quot;aggs&quot;: {
-        &quot;data&quot;: {
-          &quot;top_hits&quot;: {
-
-          }
-        }
-      } 
-    }
-  },
-  &quot;query&quot;: {
-    &quot;bool&quot;: {
-      &quot;must&quot;: [
-
-      ]
-    }
-  }
-}
-
-问题：分组无法进行分页，大数据量分组查询占用内存较高
-</code></pre><blockquote>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">利用 aggs top_hits , 直接进行分组查询</span><br><span class="line"></span><br><span class="line">GET index/type/_search</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"query"</span>: &#123;</span><br><span class="line">    <span class="string">"match"</span>: &#123;&#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"aggs"</span>: &#123;</span><br><span class="line">    <span class="string">"group"</span>: &#123;</span><br><span class="line">      <span class="string">"terms"</span>: &#123;</span><br><span class="line">        <span class="string">"field"</span>: <span class="string">"group_field"</span>,</span><br><span class="line">        <span class="string">"size"</span>: <span class="number">10</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="string">"aggs"</span>: &#123;</span><br><span class="line">        <span class="string">"data"</span>: &#123;</span><br><span class="line">          <span class="string">"top_hits"</span>: &#123;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">问题：很明显，只能按一个字段进行分组，满足不了</span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">利用<span class="built_in"> script </span>实现多字段分组查询</span><br><span class="line"></span><br><span class="line"><span class="builtin-name">GET</span> /product/goods/_search</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"size"</span>: 0, </span><br><span class="line">  <span class="string">"aggs"</span>: &#123;</span><br><span class="line">    <span class="string">"group"</span>: &#123;</span><br><span class="line">      <span class="string">"terms"</span>: &#123;</span><br><span class="line">        <span class="string">"script"</span>: <span class="string">"doc['sid'].value + doc['shop_dangkou_no'].value + doc['item_price_pifa']"</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="string">"aggs"</span>: &#123;</span><br><span class="line">        <span class="string">"data"</span>: &#123;</span><br><span class="line">          <span class="string">"top_hits"</span>: &#123;</span><br><span class="line"></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125; </span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"query"</span>: &#123;</span><br><span class="line">    <span class="string">"bool"</span>: &#123;</span><br><span class="line">      <span class="string">"must"</span>: [</span><br><span class="line"></span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">问题：分组无法进行分页，大数据量分组查询占用内存较高</span><br></pre></td></tr></table></figure>
+<blockquote>
 <p>探索二， 尝试使用字段折叠功能</p>
 </blockquote>
-<pre><code>{
-    &quot;query&quot; : {
-
-    },
-    &quot;collapse&quot; : {
-        &quot;field&quot; : &quot;same_goods.keyword&quot; 
-    }
-}
-
-
-经实践，完美的解决了分组，分页功能
-
-问题：返回的total是query的总数，无法得知字段折叠后的总数量，分页还是有问题
-</code></pre><pre><code>
-分组统计一下
-
-{
-    &quot;query&quot; : {
-
-    },
-    &quot;aggs&quot;: {
-      &quot;group&quot;: {
-        &quot;cardinality&quot;: {
-          &quot;field&quot;: &quot;same_goods.keyword&quot;
-        }
-      }
-    }
-
-}
-
-完美，解决总数量分页的问题
-</code></pre><blockquote>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"query"</span> : &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">"collapse"</span> : &#123;</span><br><span class="line">        <span class="string">"field"</span> : <span class="string">"same_goods.keyword"</span> </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">经实践，完美的解决了分组，分页功能</span><br><span class="line"></span><br><span class="line">问题：返回的total是query的总数，无法得知字段折叠后的总数量，分页还是有问题</span><br></pre></td></tr></table></figure>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">分组统计一下</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">"query"</span> : &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">"aggs"</span>: &#123;</span><br><span class="line">      <span class="string">"group"</span>: &#123;</span><br><span class="line">        <span class="string">"cardinality"</span>: &#123;</span><br><span class="line">          <span class="string">"field"</span>: <span class="string">"same_goods.keyword"</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">完美，解决总数量分页的问题</span><br></pre></td></tr></table></figure>
+<blockquote>
 <p>方案落实</p>
 </blockquote>
 <p>到此，利用字段折叠功能，可实现多字段合并，只需要构建一个字段，数据结构如下：</p>
-<pre><code>same_goods: 12345678:23456543:34456765
-
-把相似的商品ID用冒号拼接，就可以用字段折叠筛选，后面如果有其它业务，需要知道宝贝的相似款，也方便查询
-</code></pre><blockquote>
+<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">same_goods: <span class="number">12345678</span>:<span class="number">23456543</span>:<span class="number">34456765</span></span><br><span class="line"></span><br><span class="line">把相似的商品ID用冒号拼接，就可以用字段折叠筛选，后面如果有其它业务，需要知道宝贝的相似款，也方便查询</span><br></pre></td></tr></table></figure>
+<blockquote>
 <p>前台功能解决了，那如何构建这个字段呢</p>
 </blockquote>
 <p>mysql 只能分组无法，把相似款的商品都查出来，只能用程序，要根据档口，货号，价格字段进行分组，然后拼成上面的数据格式，设置到redis并设置过期时间定时更新，key为当前的商品ID, 只设置有相似款的宝贝，其它没有相似款的宝贝不需要设置</p>
@@ -180,7 +97,7 @@ GET /product/goods/_search
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/19/ElasticSearch/elasticsearch 实现合并相似款商品/" data-id="clh43bfyl000bu7jg83p19v6u" class="article-share-link">
+      <a data-url="http://yoursite.com/2019/03/19/ElasticSearch/elasticsearch 实现合并相似款商品/" data-id="clh43d3fw0007w6jgi1s200gb" class="article-share-link">
         分享
       </a>
       
