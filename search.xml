@@ -3,9 +3,7 @@
   <entry>
     <title>t2</title>
     <url>/2023/05/01/%E6%9E%B6%E6%9E%84/t2/</url>
-    <content><![CDATA[<p>```go</p>
-<p>inport main</p>
-<p>func test()<br>{<br>    fmt.printl(‘xxx’);<br>}</p>
+    <content><![CDATA[<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">inport main</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">test</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	fmt.printl(<span class="string">'xxx'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
   </entry>
   <entry>
