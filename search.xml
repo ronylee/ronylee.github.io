@@ -3,14 +3,9 @@
   <entry>
     <title>t2</title>
     <url>/2023/05/01/%E6%9E%B6%E6%9E%84/t2/</url>
-    <content><![CDATA[<pre><code class="go">
-inport main
-
-func test()
-{
-    fmt.printl(&#39;xxx&#39;);
-}
-</code></pre>
+    <content><![CDATA[<p>```go</p>
+<p>inport main</p>
+<p>func test()<br>{<br>    fmt.printl(‘xxx’);<br>}</p>
 ]]></content>
   </entry>
   <entry>
